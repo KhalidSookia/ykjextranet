@@ -1,0 +1,157 @@
+// Powered By HTTP://KNS-3W.COM
+
+@import "compass/reset";
+@import "compass";
+
+$body_bg:#0083FF;
+$header_bg:transparent;
+$footer_bg:transparent;
+
+$danger_color:#fff;
+$danger_bg:#CC5444;
+
+$safe_color:#9057af;
+$safe_bg:#97FF8C;
+
+$a_color:#CC5414;
+$a_bg:#dcdcdc;
+$a_bg_hover:#adadad;
+$a_color_hover:#255265;
+
+body{width:1000px;margin: 0 auto;background:$body_bg;line-height: 25px;}
+header{width: 100%;height: 100px;background: $header_bg;}
+footer{width: 100%;height: 100px;background: $footer_bg;}
+a{display: inline-block;float: left;margin: 10px;padding: 15px;height: 30px;background: $a_bg;text-decoration: none;color: $a_color;vertical-align: middle;}
+a:hover{background:$a_bg_hover;color:$a_color_hover;}
+th{width:1000/8}
+
+.a_logo{display:inline-block;background: transparent;margin:0px;;padding:0;float:left;height:100px;width:400px;}
+.a_logo:hover{background:transparent;}
+
+.info{background:#c8a2d2;font-size: 1.2em;color:#366e5f;padding: 3px 5px;}
+
+.danger{background: $danger_bg;color:$danger_color}
+.safe{background: $safe_bg;color:$safe_color}
+.corps{background: white;padding: 20px;}
+.clear{clear:both}
+.pad5{padding:5px;}
+
+.uppercase{text-transform:uppercase;}
+.capitalize{text-transform: capitalize;}
+
+.page_title{font-size: 1.1em;text-decoration: underline;}
+
+
+#btn_logout{float:right}
+
+.section_retour
+{
+	a
+	{
+		display: block;
+		margin-left: -15px;
+		width: 100%;
+		text-align: center;
+		background: #e1e1e1;
+		color:#B244CC;
+		
+		&:hover{
+			background:$a_bg_hover;
+			color:$a_color_hover;
+		}
+	}
+}
+
+form
+{
+	line-height: 45px;
+	legend
+	{
+		@extend .page_title;
+	}
+	label
+	{
+		display: inline-block;
+		vertical-align: top;
+		width: 150px;
+		text-align:right;
+		margin-right:10px;
+	}
+	.date_select{
+		display: inline-block;
+	}
+	textarea
+	{
+		min-width:200px;
+		min-height:75px;
+	}
+	input[type=submit]
+	{
+		margin-left:170px;
+	}
+}
+
+#voir
+{
+	.attribute
+	{
+		display: inline-block;
+		width:150px;
+		text-align:right;
+		margin-right: 15px;
+	}
+	p
+	{
+		margin-top: 15px;
+	}
+	.qualification
+	{
+		// @extend a;
+		float:none;
+		padding:0 7px;
+		margin:5px;
+	}
+	.addresse
+	{
+		span
+		{
+			float:left;
+		}
+		.add
+		{
+			display: inline-block;
+			background: red;
+			float:right;
+		}
+	}
+}
+
+#chercher
+{
+	input[type=text]{width:450px;}
+	select{max-width: 450px;}
+}
+th {
+  border: 1px solid black;
+}
+td {
+  border: 1px solid black;
+}
+
+tr .small{
+  width:50px;
+}
+tr .large{
+  width:250px;
+}
+th{text-align: center;}
+td{text-align: center;padding: 0 5px;
+	a{padding:0 3px;}
+}
+
+.footer{
+	background:#c7e4eb;
+	line-height: 100px;
+	vertical-align: middle;  
+	text-align: center;
+}

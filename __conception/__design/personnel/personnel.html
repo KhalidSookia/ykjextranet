@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Personnel</title>
+	<link rel="stylesheet" type="text/css" href="../css/stylesheets/style.css">
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+<div id="root">
+
+	<header id="header" class="header">
+		<a href="#" title="Deconnexion">Deconnexion</a>			
+	</header><!-- /header -->
+
+	<div class="clear"></div>
+
+	<section class="corps">
+		  <div class="page_title">Personnel</div>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th class="small">Civilite</th>
+                <th class="large">Nom</th>
+                <th class="large">Prenom</th>
+                <th class="large">Email</th>
+                <th class="large">Tel</th>
+                <th class="small">Active</th>
+                <th class="large">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="small">sd</td>
+                <td class="large">sdf</td>
+                <td class="large">sdf</td>
+                <td class="large">sdf</td>
+                <td class="large">sdf</td>
+                <td class="small">sdf</td>
+                <td class="large">
+                <ul>
+                    <li>
+                        <a href="{{ path('personnel_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('personnel_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('personnel_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+		<div class="clear"></div>
+	</section><!-- /.corps -->
+
+
+	<div class="clear"></div>
+
+	<footer id="footer" class="footer">
+		
+	</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+
+		{% for key, message in app.session.flashbag.all() %}
+		    <div class="alert alert-{{ key }}">
+		    	{{ message|trans({}, 'FOSUserBundle') }}
+		    </div>
+		{% endfor %}
+
+		{% block fos_user_content %}
+			{% if error %}
+			    <div>{{ error|trans }}</div>
+			{% endif %}
+
+			<form action="{{ path("fos_user_security_check") }}" method="post">
+				<fieldset>
+					<legend>Identifier vous pour vous connecter</legend>
+
+				    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+					<div>
+					    <label for="username">{{ 'security.login.username'|trans }}</label>
+					    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="john@doe.com"/>
+					</div>
+					<div>
+					    <label for="password">{{ 'security.login.password'|trans }}</label>
+					    <input type="password" id="password" name="_password" required="required" placeholder="******"/>
+					</div>
+					<div>
+					    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+					    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+					</div>
+					<div>
+					    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+					</div>
+					</fieldset>
+			</form>
+		{% endblock %}
+{% endblock %}

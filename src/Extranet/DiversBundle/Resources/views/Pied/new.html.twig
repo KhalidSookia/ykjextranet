@@ -1,0 +1,14 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+
+{% block body -%}
+    <div class="page_title">Création d'un Pied de page</div>
+
+    {{ form(form) }}
+
+	<div class="section_retour">
+        <a href="{{ path('pied') }}">Retour &agrave; la gestion des Pieds de page</a>
+		
+		<a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
+	</div>
+{% endblock %}

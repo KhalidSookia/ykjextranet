@@ -1,0 +1,255 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+body {
+  width: 1000px;
+  margin: 0 auto;
+  background: #0083ff;
+  line-height: 25px;
+}
+
+header {
+  width: 100%;
+  height: 100px;
+  background: transparent;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  background: transparent;
+}
+
+a {
+  display: inline-block;
+  float: left;
+  margin: 10px;
+  padding: 15px;
+  height: 30px;
+  background: gainsboro;
+  text-decoration: none;
+  color: #cc5414;
+  vertical-align: middle;
+}
+
+a:hover {
+  background: #adadad;
+  color: #255265;
+}
+
+th {
+  width: 1000/8;
+}
+
+.a_logo {
+  display: inline-block;
+  background: transparent;
+  margin: 0px;
+  padding: 0;
+  float: left;
+  height: 100px;
+  width: 400px;
+}
+
+.a_logo:hover {
+  background: transparent;
+}
+
+.info {
+  background: #c8a2d2;
+  font-size: 1.2em;
+  color: #366e5f;
+  padding: 3px 5px;
+}
+
+.danger {
+  background: #cc5444;
+  color: white;
+}
+
+.safe {
+  background: #97ff8c;
+  color: #9057af;
+}
+
+.corps {
+  background: white;
+  padding: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.pad5 {
+  padding: 5px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.page_title, form legend {
+  font-size: 1.1em;
+  text-decoration: underline;
+}
+
+#btn_logout {
+  float: right;
+}
+
+.section_retour a {
+  display: block;
+  margin-left: -15px;
+  width: 100%;
+  text-align: center;
+  background: #e1e1e1;
+  color: #B244CC;
+}
+.section_retour a:hover {
+  background: #adadad;
+  color: #255265;
+}
+
+form {
+  line-height: 45px;
+}
+form label {
+  display: inline-block;
+  vertical-align: top;
+  width: 150px;
+  text-align: right;
+  margin-right: 10px;
+}
+form .date_select {
+  display: inline-block;
+}
+form textarea {
+  min-width: 200px;
+  min-height: 75px;
+}
+form input[type=submit] {
+  margin-left: 170px;
+}
+
+#voir .attribute {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  margin-right: 15px;
+}
+#voir p {
+  margin-top: 15px;
+}
+#voir .qualification {
+  float: none;
+  padding: 0 7px;
+  margin: 5px;
+}
+#voir .addresse span {
+  float: left;
+}
+#voir .addresse .add {
+  display: inline-block;
+  background: red;
+  float: right;
+}
+
+#chercher input[type=text] {
+  width: 450px;
+}
+#chercher select {
+  max-width: 450px;
+}
+
+th {
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid black;
+}
+
+tr .small {
+  width: 50px;
+}
+
+tr .large {
+  width: 250px;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  padding: 0 5px;
+}
+td a {
+  padding: 0 3px;
+}
+
+.footer {
+  background: #c7e4eb;
+  line-height: 100px;
+  vertical-align: middle;
+  text-align: center;
+}

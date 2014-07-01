@@ -1,0 +1,37 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Disposition</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ entity.datedebut|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Heuredebut</th>
+                <td>{{ entity.heuredebut|date('H:i') }}</td>
+            </tr>
+            <tr>
+                <th>Dureequotidienne</th>
+                <td>{{ entity.dureequotidienne|date('H:i') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('disposition') }}" title="Retour à la gestion des mises a disposition">Retour &agrave; la gestion des mises à disposition</a>
+            </li>
+            <li>
+                <a href="{{ path('disposition_edit', { 'id': entity.id }) }}">
+                    Modifier
+                </a>
+            </li>
+        </ul>
+{% endblock %}

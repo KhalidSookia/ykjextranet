@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %} - YKJ Extranet</title>
+	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+	<script src="{{asset('js/jquery.js')}}" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+<div id="root">
+
+	<header id="header" class="header">
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<a href="{{ path('fos_user_security_logout') }}" title="Deconnexion" id="btn_logout">Deconnexion</a>
+
+		<a href="{{ path('extranet_app_homepage') }}" class="a_logo"><img src="{{ asset('img/logo.png') }}" alt="YKJ Services"></a>
+
+		{% endif %}
+		{% block header %}
+		    
+		{% endblock %}
+	</header><!-- /header -->
+
+	<div class="clear"></div>
+
+	<section class="corps">
+
+
+		{% block flash %}
+		    {% for message in app.session.flashbag.get('info') %}
+		        <p class="info">{{ message }}</p>
+		    {% endfor %}
+		{% endblock %}
+
+
+		{% block body %}{% endblock %}
+
+		<div class="clear"></div>
+	</section><!-- /.corps -->
+
+	<div class="clear"></div>
+
+	<footer id="footer" class="footer">
+	Contact en cas de problème sur le site : khalidsookia@gmail.com<br>
+		{% block footer %}{% endblock %}
+	</footer>
+
+</div>
+</body>
+</html>

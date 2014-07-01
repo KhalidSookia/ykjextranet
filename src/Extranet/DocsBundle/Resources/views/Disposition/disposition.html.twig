@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Mise à disposition</title>
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<style>
+	body{width:900px;margin: 0 auto;font:14px normal 'Helvetica', sans-serif;padding: 20px 0;padding:30px 20px;background:none;}
+	#entete{font-size:18px;border-left:10px solid #ae2d2d;border-bottom: 1px solid #ae2d2d;padding: 5px;font: 18px bold 'Helvetica', "Comic sans MS", sans-serif;color:#ae2d2d;}
+	h1{text-align:center;text-transform:uppercase;text-decoration:underline;}
+	.title{font-size:16px;text-transform:uppercase;text-decoration:underline;font-weight:bolder;}
+	.nom{text-transform:uppercase;font-weight:bold;}
+	.civilite{text-transform:uppercase;font-weight:bold;}
+	.add{text-transform:uppercase;font-weight:bold;}
+	.prenom{text-transform:capitalize;font-weight:bold;}
+	.qualification{text-transform:uppercase;font-weight:bold;}
+	.sub-title{line-height:40px;display:inline-block;width:250px;}
+	.return{text-transform:uppercase;font-size:16px;text-align:center;}
+	.indent{margin-left:30px;}
+	.footer{color:#d04e4e;background:none;line-height: 18px;margin-top: 30px;margin-bottom: 15px;}
+	.nationalite{text-transform:capitalize;}
+	.safe{background: #97FF8C;color:#9057af;}
+	.a_bloc{display: block;padding:5px 10px;margin: 20px 0 30px 0 ;text-align: center; text-decoration:none;}
+</style>
+<body>
+
+<div id="entete"> 
+	{{ entete.entete|raw }}
+</div>
+
+<h1>mise à disposition</h1>
+
+<div id="content">
+	<span class="title">Remplaçant</span> :  <span class="civilite"> m.</span> <span class="nom">{{ entity.personnel.nom }}</span> <span class="prenom">{{ entity.personnel.prenom }}</span>
+
+	<br>
+	<br>
+
+	<p>
+		Née le {{ entity.personnel.dob|date('j - M - Y') }} à{{ entity.personnel.pob }} N° Sécurité Sociale {{ entity.personnel.ss }} et demeurant au {{ entity.personnel.adresse }}
+		<br>
+		Nationalité: <span class="nationalite">{{ entity.personnel.nationalite }}</span>
+	</p>
+
+
+	<span class="title">qualification</span> :  <span class="qualification">{{ entity.qualification.qualification }}</span>
+
+	<br>
+	<br>
+
+	<span class="title">utilisateur</span> :  <span class="nom">{{ entity.utilisateur.entite }}</span> au <span class="add">{{ entity.utilisateur.adresse }}</span>. 
+
+	<br>
+
+	Personne à demander : <span class="prenom">{{ entity.utilisateur.contact }}</span>
+
+	<br>
+	<br>
+
+	<span class="title">duree de la mission</span>
+	<div>
+		<span class="sub-title">DU</span>
+		<span class="duree">{{ entity.datedebut|date('j - M - Y') }}</span>
+	</div>
+	<div>
+		<span class="sub-title">Durée hebdomadaire</span>
+		<span class="duree">{{ entity.heuredebut|date('H:m') }} à {{ entity.dureequotidienne|date('H:m') }}</span>
+	</div>
+
+	<br>
+
+	<span class="title">facturation en euros</span>
+
+	<div>
+		<span class="sub-title">Heures normales</span>
+		<span class="taux">{{ entity.taux.normale }} HT/H</span>
+	</div>
+	<div>
+		<span class="sub-title">Indemnité de repas</span>
+		<span class="taux">{{ entity.taux.repas }} TTC/J</span>
+	</div>
+	<div>
+		<span class="sub-title">Indemnité de transport</span>
+		<span class="taux">{{ entity.taux.transport }} TTC/J</span>
+	</div>
+
+	<br>
+	<br>
+
+	
+
+	<span class="title">conditions particulieres</span>
+	<p class="indent">
+		{{ conditions.conditions }}
+	</p>
+
+	<p class="footer">
+		{{ pied.pied }}
+	</p>
+
+</div>
+
+<div class="return">
+	exemplaire à nous retourner
+</div>
+
+
+{{ email|raw }}
+
+{{ section_retour|raw }}
+
+</body>
+</html>

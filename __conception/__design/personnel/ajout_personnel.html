@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajout d'un personnel</title>
+	<link rel="stylesheet" type="text/css" href="../css/stylesheets/style.css">
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+<div id="root">
+
+	<header id="header" class="header">
+		<a href="#" title="Deconnexion">Deconnexion</a>			
+	</header><!-- /header -->
+
+	<div class="clear"></div>
+
+	<section class="corps">
+		<form action="#" method="POST" accept-charset="utf-8">
+
+			<legend>
+				Enregistrement d'une nouvelle personne. Tout les champs sont obligatoires.
+			</legend>
+
+			<div class="field">
+				<label for="civilite">Civilit&eacute;</label>
+				<select name="civilite">
+					<option value="homme">Homme</option>
+					<option value="femme">Femme</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label for="nom">Nom</label>
+				<input type="text" name="nom" value="" placeholder="Nom de famille">
+			</div>
+
+			<div class="field">
+				<label for="prenoms">Pr&eacute;nom</label>
+				<input type="text" name="prenoms" value="" placeholder="Pr&eacute;nom et autres noms">
+			</div>
+
+			<div class="field">
+				<label for="email">E-mail</label>
+				<input type="text" name="email" value="" placeholder="email">
+			</div>
+
+			<div class="field">
+				<label for="tel">Tel</label>
+				<input type="text" name="tel" value="" placeholder="0123456789">
+			</div>
+
+			<div class="field">
+				<label for="dob">Date de naissance</label>
+				<input type="text" name="jdob" value="" placeholder="JJ" class="jdob" maxlength="2">
+				<input type="text" name="mdob" value="" placeholder="MM" class="mdob" maxlength="2">
+				<input type="text" name="ydob" value="" placeholder="YYYY" class="ydob" maxlength="4">
+			</div>
+
+			<div class="field">
+				<label for="ss">S&eacute;curit&eacute; sociale</label>
+				<input type="text" name="ss" value="" placeholder="123456789xxxxxxx">
+			</div>
+
+			<div class="field">
+				<label for="add">Addresse</label>
+				<textarea name="add" placeholder=""></textarea>
+			</div>
+
+			<div class="field">
+				<label for="nationalite">Nationalit&eacute;</label>
+				<input type="text" name="nationalite" value="" placeholder="Congolais">
+			</div>
+
+			<div class="field">
+				<label for="qualification">Qualification</label>
+				<select name="qualification" id="qualification" multiple size="8">
+					<option value="night">Night</option>
+					<option value="chambre">Femme de Chambre</option>
+					<option value="caf">Caf&eacute;teria</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label for="active">Activer</label>
+				<input type="checkbox" name="active" value="" checked="checked">
+			</div>
+
+			<div class="field">
+				<input type="submit" name="submit" value="Ajouter">
+			</div>
+		</form>
+		
+		<div class="section_retour">
+			<a href="#" title="Retour au tableau de bord">Retour &agrave; la gestion du personnel</a>
+			
+			<a href="#" title="Retour au tableau de bord">Retour au tableau de bord</a>
+		</div>
+		<div class="clear"></div>
+	</section><!-- /.corps -->
+
+
+	<div class="clear"></div>
+
+	<footer id="footer" class="footer">
+		
+	</footer>
+
+</div>
+</body>
+</html>

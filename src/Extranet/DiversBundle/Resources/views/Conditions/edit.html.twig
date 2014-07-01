@@ -1,0 +1,14 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+{% block body -%}
+
+	<div class="page_title">Modification d'une Condition générale</div>
+
+    {{ form(edit_form) }}
+
+	<div class="section_retour">
+        <a href="{{ path('conditions') }}">Retour &agrave; la gestion des conditions générales</a>
+		
+		<a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
+	</div>
+{% endblock %}

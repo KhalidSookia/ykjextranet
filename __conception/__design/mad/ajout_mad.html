@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajout d'un personnel</title>
+	<link rel="stylesheet" type="text/css" href="../css/stylesheets/style.css">
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+<div id="root">
+
+	<header id="header" class="header">
+		<a href="#" title="Deconnexion">Deconnexion</a>			
+	</header><!-- /header -->
+
+	<div class="clear"></div>
+
+	<section class="corps">
+		<form action="#" method="POST" accept-charset="utf-8">
+
+			<legend>
+				Creation d'une mise a disposition
+			</legend>
+			
+
+
+			<legend>Entete</legend>
+
+			<div class="field">
+				<div class="utiliser">
+					Entete
+					<input type="checkbox" checked>
+				</div>
+			</div>
+			<div class="field">
+				<div class="utiliser">
+					Entete
+					<input type="checkbox" checked>
+				</div>
+			</div>
+			<div class="field">
+				<div class="utiliser">
+					Entete
+					<input type="checkbox" checked>
+				</div>
+			</div>
+
+
+			<div class="field">
+				<label for="remplacant">Remplacant</label>
+				<input type="text" name="remplacant" id="remplacant" placeholder="Le Nom ou l'identifiant du Remplacant">
+			</div>
+
+			<div class="field">
+				<label for="qualification">Qualification</label>
+				<select name="qualification" id="qualification">
+					<option value="night">Night</option>
+					<option value="chambre">chambre</option>
+					<option value="caf">cafeteria</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label for="utilisateur">Utilisateur</label>
+				<input type="text" name="utilisateur" id="utilisateur" placeholder="Le Nom ou l'identifiant de l'utilisateur">
+			</div>
+
+			<div class="field">
+				<label for="date">Duree de la mission</label>
+				<input type="date" name="date_debut" id="date_debut" placeholder="la date de debut">
+				<input type="date" name="date_fin" id="date_fin" placeholder="la date de fin">
+			</div>
+			
+			<div class="field">
+				<label for="duree">Dur&eacute;e hebdomadaire</label>
+				<input type="time">
+			</div>
+
+			<div class="field">
+				<label for="duree">Horaire hebdomadaire</label>
+				DE <input type="time"> &Agrave; <input type="time">
+			</div>
+			
+			<legend>Facturation en Euros</legend>
+
+			<div class="field">
+				<label for="heures_normales">Heures Normales</label>
+				<input type="text" name="heures_normales" value="16.20">
+			</div>
+
+			<div class="field">
+				<label for="indem_repas">Indemn. de Repas</label>
+				<input type="text" name="indem_repas" value="5.50">
+			</div>
+
+			<div class="field">
+				<label for="indem_trans">Indemn. de trans</label>
+				<input type="text" name="indem_trans" value="4.50">
+			</div>
+
+			<legend>Conditions Particuli&egrave;re</legend>
+
+			<div class="field">
+				<div class="utiliser">
+					Nom d'une condition
+					<input type="checkbox" checked>
+				</div>
+			</div>
+			<div class="field">
+				<div class="utiliser">
+					Nom d'une condition
+					<input type="checkbox" checked>
+				</div>
+			</div>
+			<div class="field">
+				<div class="utiliser">
+					Nom d'une condition
+					<input type="checkbox" checked>
+				</div>
+			</div>
+
+			<legend>Pied de page</legend>
+
+			<div class="field">
+				<div class="utiliser">
+					Pied de page
+					<input type="checkbox" checked>
+				</div>
+			</div>
+			<div class="field">
+				<div class="utiliser">
+					Pied de page
+					<input type="checkbox" checked>
+				</div>
+			</div>
+			<div class="field">
+				<div class="utiliser">
+					Pied de page
+					<input type="checkbox" checked>
+				</div>
+			</div>
+
+			<input type="submit" value="Cr&eacute;er et envoyer">
+		</form>
+
+		<div class="section_retour">
+			<a href="#" title="Retour au tableau de bord">Retour &agrave; la gestion du personnel</a>
+			
+			<a href="#" title="Retour au tableau de bord">Retour au tableau de bord</a>
+		</div>
+		<div class="clear"></div>
+	</section><!-- /.corps -->
+
+
+	<div class="clear"></div>
+
+	<footer id="footer" class="footer">
+		
+	</footer>
+
+</div>
+</body>
+</html>

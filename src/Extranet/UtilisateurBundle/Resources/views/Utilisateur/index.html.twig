@@ -1,0 +1,53 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <div class="page_title">Utilisateur (Client)</div>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th class="large">Entite</th>
+                <th class="large">Contact</th>
+                <th class="large">Email</th>
+                <th class="large">Tel</th>
+                <th class="small">Active</th>
+                <th class="large">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td class="large">{{ entity.entite }}</td>
+                <td class="large">{{ entity.contact }}</td>
+                <td class="large">{{ entity.email }}</td>
+                <td class="large">{{ entity.tel }}</td>
+                <td class="small">
+                    {% if  entity.active != false %}  Oui {% endif %}
+                    {% if entity.active == false %} Non {% endif %}
+                </td>
+                <td>
+                <ul class="large">
+                    <li>
+                        <a href="{{ path('utilisateur_show', { 'id': entity.id }) }}">Voir</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('utilisateur_edit', { 'id': entity.id }) }}">Modifier</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('utilisateur_new') }}">
+                    Ajouter un nouvel utilisateur/client
+                </a>
+            </li>
+        </ul>
+        <div class="section_retour">
+            <a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
+        </div>
+    {% endblock %}

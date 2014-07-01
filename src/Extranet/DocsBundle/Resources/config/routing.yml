@@ -1,0 +1,35 @@
+disposition:
+    pattern:  /disposition
+    defaults: { _controller: ExtranetDocsBundle:Disposition:index }
+
+disposition_new:
+    pattern:  /disposition/new
+    defaults: { _controller: ExtranetDocsBundle:Disposition:new }
+
+disposition_create:
+    pattern:  /disposition/create
+    defaults: { _controller: ExtranetDocsBundle:Disposition:create }
+
+disposition_show:
+    pattern:  /disposition/{id}
+    defaults: { _controller: ExtranetDocsBundle:Disposition:generateDisposition }
+
+disposition_delete:
+    pattern:  /disposition/delete/{id}
+    defaults: { _controller: ExtranetDocsBundle:Disposition:delete }
+
+disposition_update:
+    pattern:  /disposition/update/{id}
+    defaults: { _controller: ExtranetDocsBundle:Disposition:update }
+
+disposition_edit:
+    pattern:  /disposition/{id}/edit
+    defaults: { _controller: ExtranetDocsBundle:Disposition:edit }
+
+generate_disposition:
+    pattern:  /generate/disposition/{id}
+    defaults: { _controller: ExtranetDocsBundle:Disposition:generateDisposition }
+
+mail_disposition:
+    pattern:  /mail/disposition/{id}
+    defaults: { _controller: ExtranetDocsBundle:Disposition:mailDisposition }

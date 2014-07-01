@@ -1,0 +1,60 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+{% block body -%}
+
+    <div id="voir">
+
+            <div class="page_title">Profil de <strong><span class="capitalize">{{ entity.entite }}</strong></div>
+
+            <p class="capitalize">
+                <span class="attribute">Entit&eacute;:</span>
+                <span class="capitalize">{{ entity.entite }}</span>
+            </p>
+
+            <p>
+                <span class="attribute">Email:</span>{{ entity.email }}
+            </p>
+
+            <p>
+                <span class="attribute">Derni&egrave;re mission:</span>16-03-1986 (JJ-MM-YYYY)
+            </p>
+
+            <p>
+                <span class="attribute">T&eacute;l&eacute;phone:</span>{{ entity.tel }}
+            </p>
+
+            <p class="addresse">
+                <span class="attribute">Addresse:</span>{{ entity.adresse }}
+            </p>
+            <div class="clear"></div>
+            <p>
+                <span class="attribute">Personne &agrave; demander:</span><span class="capitalize">{{ entity.contact }}</span>
+            </p>
+
+            {% if  entity.active != false %}
+            <p class="safe pad5">
+                Cet utilisateur est activ&eacute;.
+    
+                <p><a href="{{ path('utilisateur_edit', { 'id': entity.id }) }}" title="" class="danger">D&eacute;sactiver  cet utilisateur</a></p>
+            </p>
+        {% endif %}
+        {% if entity.active == false %}
+            <p class="danger pad5">
+                Cet utilisateur est inactive.
+
+
+                <p><a href="{{ path('utilisateur_edit', { 'id': entity.id }) }}" title="" class="safe">Activer  cet Utilisateur</a></p>
+            </p>
+        {% endif %}
+
+
+        </div>
+        
+        <div class="section_retour">
+            <a href="{{ path('utilisateur') }}">
+                Retour &agrave; la gestion des utilisateurs
+            </a>
+            
+            <a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
+        </div>
+{% endblock %}
