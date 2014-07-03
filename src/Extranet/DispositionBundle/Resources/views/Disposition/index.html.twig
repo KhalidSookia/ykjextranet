@@ -27,8 +27,8 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('disposition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td colspan="2" class="large">{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d') }} à {{ entity.heuredebut|date('H:i') }}{% endif %}</td>
-                <td class="large">{{ entity.dureequotidienne|date('H:i') }}</td>
+                {# <td colspan="2" class="large">{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d') }} à {{ entity.heuredebut|date('H:i') }}{% endif %}</td> #}
+                {# <td class="large">{{ entity.dureequotidienne|date('H:i') }}</td> #}
                 <td class="small">
                 <ul>
                     <li>

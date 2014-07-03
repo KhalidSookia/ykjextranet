@@ -2,13 +2,7 @@
 
 {% block body -%}
     <h1>Création d'une mise à disposition</h1>
-{{ form_start(form) }}
     {{ form(form) }}
-    {{ form_row(form.taux.normale, {'attr': {'class' : 'taux.normale'}}) }}
-    {# {{ dump(taux) }} #}
-    {{ form_row(form.taux.repas, {'attr': {'value' : taux.repas}}) }}
-    {{ form_row(form.taux.transport, {'attr': {'value' : taux.transport}}) }}
-
 
 		<div class="section_retour">
 			<a href="{{ path('disposition') }}" title="Retour à la gestion des mises a disposition">Retour &agrave; la gestion des mises à disposition</a>

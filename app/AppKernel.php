@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Extranet\UserBundle\ExtranetUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Extranet\DispositionBundle\ExtranetDispositionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

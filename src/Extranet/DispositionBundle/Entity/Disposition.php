@@ -1,6 +1,6 @@
 <?php
 
-namespace Extranet\DocsBundle\Entity;
+namespace Extranet\DispositionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Disposition
  *
  * @ORM\Table("disposition")
- * @ORM\Entity(repositoryClass="Extranet\DocsBundle\Entity\DispositionRepository")
+ * @ORM\Entity(repositoryClass="Extranet\DispositionBundle\Entity\DispositionRepository")
  */
 class Disposition
 {
@@ -30,27 +30,6 @@ class Disposition
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datedebut", type="date")
-     */
-    private $datedebut;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="heuredebut", type="time")
-     */
-    private $heuredebut;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dureequotidienne", type="time")
-     */
-    private $dureequotidienne;
-
-    /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $created_at;
@@ -68,6 +47,12 @@ class Disposition
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Extranet\DispositionBundle\Entity\Wkdate", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $wkdate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Extranet\PersonnelBundle\Entity\Personnel")
@@ -97,7 +82,7 @@ class Disposition
 
     public function getLastsDispositions()
     {
-        $q = $this->_em->createQuery('SELECT d FROM ExtranetDocsBundle:Disposition d 
+        $q = $this->_em->createQuery('SELECT d FROM ExtranetDispositionBundle:Disposition d 
             ORDER BY d.id DESC');
 
         $q->setMaxResults;
@@ -111,98 +96,6 @@ class Disposition
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set datedebut
-     *
-     * @param \DateTime $datedebut
-     * @return Disposition
-     */
-    public function setDatedebut($datedebut)
-    {
-        $this->datedebut = $datedebut;
-
-        return $this;
-    }
-
-    /**
-     * Get datedebut
-     *
-     * @return \DateTime 
-     */
-    public function getDatedebut()
-    {
-        return $this->datedebut;
-    }
-
-    /**
-     * Set heuredebut
-     *
-     * @param \DateTime $heuredebut
-     * @return Disposition
-     */
-    public function setHeuredebut($heuredebut)
-    {
-        $this->heuredebut = $heuredebut;
-
-        return $this;
-    }
-
-    /**
-     * Get heuredebut
-     *
-     * @return \DateTime 
-     */
-    public function getHeuredebut()
-    {
-        return $this->heuredebut;
-    }
-
-    /**
-     * Set dureequotidienne
-     *
-     * @param \DateTime $dureequotidienne
-     * @return Disposition
-     */
-    public function setDureequotidienne($dureequotidienne)
-    {
-        $this->dureequotidienne = $dureequotidienne;
-
-        return $this;
-    }
-
-    /**
-     * Get dureequotidienne
-     *
-     * @return \DateTime 
-     */
-    public function getDureequotidienne()
-    {
-        return $this->dureequotidienne;
-    }
-
-    /**
-     * Set datefin
-     *
-     * @param \DateTime $datefin
-     * @return Disposition
-     */
-    public function setDatefin($datefin)
-    {
-        $this->datefin = $datefin;
-
-        return $this;
-    }
-
-    /**
-     * Get datefin
-     *
-     * @return \DateTime 
-     */
-    public function getDatefin()
-    {
-        return $this->datefin;
     }
 
     /**
@@ -344,29 +237,6 @@ class Disposition
     }
 
     /**
-     * Set taux
-     *
-     * @param \Extranet\DiversBundle\Entity\Taux $taux
-     * @return Disposition
-     */
-    public function setTaux(\Extranet\DiversBundle\Entity\Taux $taux = null)
-    {
-        $this->taux = $taux;
-
-        return $this;
-    }
-
-    /**
-     * Get taux
-     *
-     * @return \Extranet\DiversBundle\Entity\Taux 
-     */
-    public function getTaux()
-    {
-        return $this->taux;
-    }
-
-    /**
      * Set conditions
      *
      * @param \Extranet\DiversBundle\Entity\Conditions $conditions
@@ -410,5 +280,51 @@ class Disposition
     public function getPied()
     {
         return $this->pied;
+    }
+
+    /**
+     * Set taux
+     *
+     * @param \Extranet\DiversBundle\Entity\Taux $taux
+     * @return Disposition
+     */
+    public function setTaux(\Extranet\DiversBundle\Entity\Taux $taux = null)
+    {
+        $this->taux = $taux;
+
+        return $this;
+    }
+
+    /**
+     * Get taux
+     *
+     * @return \Extranet\DiversBundle\Entity\Taux 
+     */
+    public function getTaux()
+    {
+        return $this->taux;
+    }
+
+    /**
+     * Set wkdate
+     *
+     * @param \Extranet\WkdateBundle\Entity\Wkdate $wkdate
+     * @return Disposition
+     */
+    public function setWkdate(\Extranet\DispositionBundle\Entity\Wkdate $wkdate)
+    {
+        $this->wkdate = $wkdate;
+    
+        return $this;
+    }
+
+    /**
+     * Get wkdate
+     *
+     * @return \Extranet\DispositionBundle\Entity\Wkdate
+     */
+    public function getWkdate()
+    {
+        return $this->wkdate;
     }
 }

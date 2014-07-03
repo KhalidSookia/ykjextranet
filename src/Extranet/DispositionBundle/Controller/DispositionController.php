@@ -1,14 +1,16 @@
 <?php
 
-namespace Extranet\DocsBundle\Controller;
+namespace Extranet\DispositionBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Extranet\DocsBundle\Entity\Disposition;
-use Extranet\DocsBundle\Form\DispositionType;
+use Extranet\DispositionBundle\Entity\Disposition;
+use Extranet\DispositionBundle\Entity\Wkdate;
+use Extranet\DispositionBundle\Form\DispositionType;
 use Extranet\DiversBundle\Entity\Taux;
 
 /**
@@ -18,7 +20,6 @@ use Extranet\DiversBundle\Entity\Taux;
  */
 class DispositionController extends Controller
 {
-
     /**
      * Lists all Disposition entities.
      *
@@ -30,7 +31,7 @@ class DispositionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ExtranetDocsBundle:Disposition')->findBy(array(),array('id' => 'DESC'));
+        $entities = $em->getRepository('ExtranetDispositionBundle:Disposition')->findBy(array(),array('id' => 'DESC'));
 
 
         return array(
@@ -42,18 +43,13 @@ class DispositionController extends Controller
      *
      * @Route("/", name="disposition_create")
      * @Method("POST")
-     * @Template("ExtranetDocsBundle:Disposition:new.html.twig")
+     * @Template("ExtranetDispositionBundle:Disposition:new.html.twig")
      */
     public function createAction(Request $request)
     {
         $entity = new Disposition();
 
-
         $em = $this->getDoctrine()->getManager();
-        $tauxRepository = $em->getRepository('ExtranetDiversBundle:Taux');
-        $taux = $tauxRepository->findOneBy(array(), array('id' => 'DESC'));
-
-        $new_taux = new Taux();
 
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -82,9 +78,6 @@ class DispositionController extends Controller
     private function createCreateForm(Disposition $entity)
     {       
         $em = $this->getDoctrine()->getManager();
-        $tauxRepository = $em->getRepository('ExtranetDiversBundle:Taux');
-
-        $taux = $tauxRepository->findOneBy(array(), array('id' => 'DESC'));
 
         $form = $this->createForm(new DispositionType(), $entity, array(
             'action' => $this->generateUrl('disposition_create'),
@@ -109,15 +102,20 @@ class DispositionController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
-        $tauxRepository = $em->getRepository('ExtranetDiversBundle:Taux');
 
+
+        $tauxRepository = $em->getRepository('ExtranetDiversBundle:Taux');
         $taux = $tauxRepository->findOneBy(array(), array('id' => 'DESC'));
+
+        $wkdateRepository = $em->getRepository('ExtranetDispositionBundle:Wkdate');
+        $wkdate = $wkdateRepository->findOneBy(array(), array('id' => 'DESC'));
 
         $form   = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
             'taux'   => $taux,
+            'wkdate' => $wkdate,
             'form'   => $form->createView(),
         );
     }
@@ -133,7 +131,7 @@ class DispositionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ExtranetDocsBundle:Disposition')->find($id);
+        $entity = $em->getRepository('ExtranetDispositionBundle:Disposition')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Disposition entity.');
@@ -156,7 +154,7 @@ class DispositionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ExtranetDocsBundle:Disposition')->find($id);
+        $entity = $em->getRepository('ExtranetDispositionBundle:Disposition')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Disposition entity.');
@@ -195,13 +193,13 @@ class DispositionController extends Controller
      *
      * @Route("/{id}", name="disposition_update")
      * @Method("PUT")
-     * @Template("ExtranetDocsBundle:Disposition:edit.html.twig")
+     * @Template("ExtranetDispositionBundle:Disposition:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ExtranetDocsBundle:Disposition')->find($id);
+        $entity = $em->getRepository('ExtranetDispositionBundle:Disposition')->find($id);
 
         $entity->setUpdatedAt(new \Datetime());
 
@@ -238,7 +236,7 @@ class DispositionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ExtranetDocsBundle:Disposition')->find($id);
+            $entity = $em->getRepository('ExtranetDispositionBundle:Disposition')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Disposition entity.');
@@ -268,6 +266,49 @@ class DispositionController extends Controller
         ;
     }
 
+    public function getEntity($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('ExtranetDispositionBundle:Disposition')->find($id);
+
+        return $entity;
+    }
+
+    public function getEntete()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entete = $em->getRepository('ExtranetDiversBundle:Entete')->findOneBy(array('active' => true));
+
+        return $entete;
+    }
+
+    public function getConditions()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $conditions = $em->getRepository('ExtranetDiversBundle:Conditions')->findOneBy(array('active' => true));
+
+        return $conditions;
+    }
+
+    public function getPied()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $pied = $em->getRepository('ExtranetDiversBundle:Pied')->findOneBy(array('active' => true));
+
+        return $pied;
+    }
+
+    public function getPdfPath($id)
+    {
+        $pdfFile = $this->getRequest()->getUriForPath('/../docs/pdf/miseadisposition/' . $id . '.pdf');
+
+        return $pdfFile;
+    }
+
     public function generateDispositionAction($id)
     {
         $section_retour = "<div class='section_retour'>
@@ -275,15 +316,13 @@ class DispositionController extends Controller
             
             <a href='" . $this->generateUrl('extranet_app_homepage') . "' title='Retour au tableau de bord'>Retour au tableau de bord</a>
         </div>";
-        $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ExtranetDocsBundle:Disposition')->find($id);
-
-        $entete = $em->getRepository('ExtranetDiversBundle:Entete')->findOneBy(array('active' => true));
-        $conditions = $em->getRepository('ExtranetDiversBundle:Conditions')->findOneBy(array('active' => true));
-        $pied = $em->getRepository('ExtranetDiversBundle:Pied')->findOneBy(array('active' => true));
-
-        //var_dump($conditions);die();
+        $download_link = '<a href=" ' . $this->generateUrl('download_disposition', array('id' => $id)) . ' ">Télécharger</a>';
+        
+        $entity = $this->getEntity($id);
+        $conditions = $this->getConditions();
+        $entete = $this->getEntete();
+        $pied = $this->getPied();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Disposition entity.');
@@ -292,24 +331,61 @@ class DispositionController extends Controller
         $urlDisposition = $this->generateUrl('mail_disposition', array('id' => $id));
 
 
-        return $this->render('ExtranetDocsBundle:Disposition:disposition.html.twig', array(
+        return $this->render('ExtranetDispositionBundle:Disposition:disposition.html.twig', array(
             'entity' => $entity,
             'conditions' => $conditions,
             'pied' => $pied,
             'entete' => $entete,
             'section_retour' => $section_retour,
-            'email' => "<a href='$urlDisposition' class='safe a_bloc'>Envoyer par mail</a>"
+            'email' => "<a href='$urlDisposition' class='safe a_bloc'>Envoyer par mail</a>",
+            'download' => $download_link
         ));
+    }
+
+    public function generatePdf($id)
+    {
+        $pdfFile = $this->getPdfPath($id);
+        $entity = $this->getEntity($id);
+        $conditions = $this->getConditions();
+        $entete = $this->getEntete();
+        $pied = $this->getPied();
+
+
+        if(!file_exists($pdfFile)){
+
+            $this->removePdf($id);
+
+            $this->get('knp_snappy.pdf')->generateFromHtml(
+                $this->renderView(
+                    "ExtranetDispositionBundle:Disposition:disposition.html.twig", array(
+                        'entete' => $entete,
+                        'entity' => $entity,
+                        'conditions' => $conditions,
+                        'pied' => $pied,
+                        'section_retour' => '',
+                        'email' => '',
+                        'download' => ''
+                    )
+                ), "docs/pdf/miseadisposition/$id.pdf"
+            );
+        }
+
+        return;
+    }
+
+    public function removePdf($id)
+    {
+        unlink(__DIR__ . '/../../../../web/docs/pdf/miseadisposition/' . $id . '.pdf');
     }
 
     public function mailDispositionAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('ExtranetDocsBundle:Disposition')->find($id);
+        $pdfFile = $this->generatePdf($id);
+        $entity = $this->getEntity($id);
+        $conditions = $this->getConditions();
+        $entete = $this->getEntete();
+        $pied = $this->getPied();
 
-        $entete = $em->getRepository('ExtranetDiversBundle:Entete')->findOneBy(array('active' => true));
-        $conditions = $em->getRepository('ExtranetDiversBundle:Conditions')->findOneBy(array('active' => true));
-        $pied = $em->getRepository('ExtranetDiversBundle:Pied')->findOneBy(array('active' => true));
 
         if($entity->getPersonnel()->getCivilite() == false){
             $civilite = 'Mme.';
@@ -317,36 +393,7 @@ class DispositionController extends Controller
             $civilite = 'Mr.';
         }
 
-        $disposition = $this->render("ExtranetDocsBundle:Disposition:disposition.html.twig", array(
-            'entete' => $entete,
-            'entity' => $entity,
-            'conditions' => $conditions,
-            'pied' => $pied,
-            'section_retour' => '',
-            'email' => ''
-            ));
-
-        $disposition = "Bonjour. <br>Merci de trouver ci-joint la mise à disposition de " . $civilite . ' ' . $entity->getPersonnel()->getNom() . ' ' . $entity->getPersonnel()->getPrenom() . "<br><br>Très Coridalement";
-
-        $pdfFile = __DIR__ . '/../../../../web/docs/pdf/miseadisposition/' . $id . '.pdf';
-
-        if(!file_exists($pdfFile)){
-            $this->get('knp_snappy.pdf')->generateFromHtml(
-                $this->renderView(
-                    "ExtranetDocsBundle:Disposition:disposition.html.twig", array(
-                        'entete' => $entete,
-                        'entity' => $entity,
-                        'conditions' => $conditions,
-                        'pied' => $pied,
-                        'section_retour' => '',
-                        'email' => ''
-                    )
-                ), "docs/pdf/miseadisposition/$id.pdf"
-            );
-        }
-
-
-
+        $disposition = "Bonjour. <br>Merci de trouver ci-joint la mise à disposition de " . $civilite . ' ' . $entity->getPersonnel()->getNom() . ' ' . $entity->getPersonnel()->getPrenom() . "<br><br>Très Coridalement<br><br>YKJ Services";
 
         $mailer = $this->get('mailer');
 
@@ -359,13 +406,33 @@ class DispositionController extends Controller
         ;
         //$mailer->send($message);
 
-// die();
         $this->get('session')->getFlashBag()->add('info', 'Votre mise à disposition à bien été envoyé.');
 
-        unlink($pdfFile);
+        //$this->removePdf($id);
 
 
         return $this->redirect($this->generateUrl('extranet_app_homepage'));
-       
+    }
+
+    public function downloadDispositionAction($id)
+    {
+
+        //$this->generatePdf($id);
+//
+        //$download_link = $this->getPdfPath($id);
+//
+        //return $this->redirect($download_link);
+
+        $pdfFile = $this->generatePdf($id);
+ 
+        $response = new Response();
+        $response->setStatusCode(200);
+        $response->headers->set('Content-Type', "application/$format");
+        $response->setCharset('UTF-8');
+        $response->setContent(file_get_contents($this->getPdfPath($id)));
+ 
+        // prints the HTTP headers followed by the content
+        $response->send();
+        return $response;
     }
 }

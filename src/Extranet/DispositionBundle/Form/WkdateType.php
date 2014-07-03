@@ -1,12 +1,12 @@
 <?php
 
-namespace Extranet\DiversBundle\Form;
+namespace Extranet\DispositionBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TauxType extends AbstractType
+class WkdateType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,12 @@ class TauxType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('normale', 'money', array('attr' => array('required' => true)))
-            ->add('repas', 'money', array('attr' => array('required' => true)))
-            ->add('transport', 'money', array('attr' => array('required' => true)))
+            ->add('datedebut', 'date', array('label' => 'Date Début', 'years' => range(\date("Y"), \date("Y") +1), 'attr' =>array('class' => 'date_select')))
+
+            ->add('heuredebut', 'time', array('label' => 'Heure Début', 'attr' =>array('class' => 'date_select')))
+
+            ->add('dureequotidienne', 'time', array('label' => 'Durée quotidienne', 'attr' =>array('class' => 'date_select')))
+
         ;
     }
     
@@ -27,7 +30,7 @@ class TauxType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Extranet\DiversBundle\Entity\Taux'
+            'data_class' => 'Extranet\DispositionBundle\Entity\Wkdate'
         ));
     }
 
@@ -36,6 +39,6 @@ class TauxType extends AbstractType
      */
     public function getName()
     {
-        return 'extranet_diversbundle_taux';
+        return 'extranet_dispositionbundle_wkdate';
     }
 }

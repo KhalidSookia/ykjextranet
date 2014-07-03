@@ -3,6 +3,7 @@
 <head>
 	<title>{% block title %}{% endblock %} - YKJ Extranet</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+	{% block css %}{% endblock %}
 	<script src="{{asset('js/jquery.js')}}" type="text/javascript" charset="utf-8" async defer></script>
 </head>
 <body>
@@ -15,9 +16,9 @@
 		<a href="{{ path('extranet_app_homepage') }}" class="a_logo"><img src="{{ asset('img/logo.png') }}" alt="YKJ Services"></a>
 
 		{% endif %}
-		{% block header %}
-		    
-		{% endblock %}
+
+		{% block header %}{% endblock %}
+
 	</header><!-- /header -->
 
 	<div class="clear"></div>
@@ -41,9 +42,16 @@
 
 	<footer id="footer" class="footer">
 	Contact en cas de problème sur le site : khalidsookia@gmail.com<br>
+
 		{% block footer %}{% endblock %}
+
 	</footer>
 
 </div>
+
+
+{% block js %}{% endblock %}
+
+
 </body>
 </html>

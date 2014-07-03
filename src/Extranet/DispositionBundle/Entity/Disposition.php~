@@ -1,14 +1,14 @@
 <?php
 
-namespace Extranet\DocsBundle\Entity;
+namespace Extranet\DispositionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Disposition
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Extranet\DocsBundle\Entity\DispositionRepository")
+ * @ORM\Table("disposition")
+ * @ORM\Entity(repositoryClass="Extranet\DispositionBundle\Entity\DispositionRepository")
  */
 class Disposition
 {
@@ -26,34 +26,6 @@ class Disposition
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="datedebut", type="date")
-     */
-    private $datedebut;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="heuredebut", type="time")
-     */
-    private $heuredebut;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dureequotidienne", type="time")
-     */
-    private $dureequotidienne;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="datefin", type="date")
-     */
-    private $datefin;
 
     /**
      * @var \DateTime
@@ -77,10 +49,10 @@ class Disposition
     private $active;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Extranet\DiversBundle\Entity\Entete")
+     * @ORM\ManyToOne(targetEntity="Extranet\WkdateBundle\Entity\Wkdate")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $entete;
+    private $wkdate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Extranet\PersonnelBundle\Entity\Personnel")
@@ -101,24 +73,20 @@ class Disposition
     private $utilisateur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Extranet\DiversBundle\Entity\Taux")
+     * @ORM\ManyToOne(targetEntity="Extranet\DiversBundle\Entity\Taux", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $taux;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Extranet\DiversBundle\Entity\Conditions")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $conditions;
+    private $lastsDispositions;
 
+    public function getLastsDispositions()
+    {
+        $q = $this->_em->createQuery('SELECT d FROM ExtranetDispositionBundle:Disposition d 
+            ORDER BY d.id DESC');
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Extranet\DiversBundle\Entity\Pied")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $pied;
-
+        $q->setMaxResults;
+    }
 
     /**
      * Get id
@@ -128,98 +96,6 @@ class Disposition
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set datedebut
-     *
-     * @param \DateTime $datedebut
-     * @return Disposition
-     */
-    public function setDatedebut($datedebut)
-    {
-        $this->datedebut = $datedebut;
-
-        return $this;
-    }
-
-    /**
-     * Get datedebut
-     *
-     * @return \DateTime 
-     */
-    public function getDatedebut()
-    {
-        return $this->datedebut;
-    }
-
-    /**
-     * Set heuredebut
-     *
-     * @param \DateTime $heuredebut
-     * @return Disposition
-     */
-    public function setHeuredebut($heuredebut)
-    {
-        $this->heuredebut = $heuredebut;
-
-        return $this;
-    }
-
-    /**
-     * Get heuredebut
-     *
-     * @return \DateTime 
-     */
-    public function getHeuredebut()
-    {
-        return $this->heuredebut;
-    }
-
-    /**
-     * Set dureequotidienne
-     *
-     * @param \DateTime $dureequotidienne
-     * @return Disposition
-     */
-    public function setDureequotidienne($dureequotidienne)
-    {
-        $this->dureequotidienne = $dureequotidienne;
-
-        return $this;
-    }
-
-    /**
-     * Get dureequotidienne
-     *
-     * @return \DateTime 
-     */
-    public function getDureequotidienne()
-    {
-        return $this->dureequotidienne;
-    }
-
-    /**
-     * Set datefin
-     *
-     * @param \DateTime $datefin
-     * @return Disposition
-     */
-    public function setDatefin($datefin)
-    {
-        $this->datefin = $datefin;
-
-        return $this;
-    }
-
-    /**
-     * Get datefin
-     *
-     * @return \DateTime 
-     */
-    public function getDatefin()
-    {
-        return $this->datefin;
     }
 
     /**
@@ -315,29 +191,6 @@ class Disposition
     }
 
     /**
-     * Set entete
-     *
-     * @param \Extranet\DiversBundle\Entity\Entete $entete
-     * @return Disposition
-     */
-    public function setEntete(\Extranet\DiversBundle\Entity\Entete $entete = null)
-    {
-        $this->entete = $entete;
-
-        return $this;
-    }
-
-    /**
-     * Get entete
-     *
-     * @return \Extranet\DiversBundle\Entity\Entete 
-     */
-    public function getEntete()
-    {
-        return $this->entete;
-    }
-
-    /**
      * Set utilisateur
      *
      * @param \Extranet\UtilisateurBundle\Entity\Utilisateur $utilisateur
@@ -404,5 +257,51 @@ class Disposition
     public function getTaux()
     {
         return $this->taux;
+    }
+
+    /**
+     * Set conditions
+     *
+     * @param \Extranet\DiversBundle\Entity\Conditions $conditions
+     * @return Disposition
+     */
+    public function setConditions(\Extranet\DiversBundle\Entity\Conditions $conditions = null)
+    {
+        $this->conditions = $conditions;
+
+        return $this;
+    }
+
+    /**
+     * Get conditions
+     *
+     * @return \Extranet\DiversBundle\Entity\Conditions 
+     */
+    public function getConditions()
+    {
+        return $this->conditions;
+    }
+
+    /**
+     * Set pied
+     *
+     * @param \Extranet\DiversBundle\Entity\Pied $pied
+     * @return Disposition
+     */
+    public function setPied(\Extranet\DiversBundle\Entity\Pied $pied = null)
+    {
+        $this->pied = $pied;
+
+        return $this;
+    }
+
+    /**
+     * Get pied
+     *
+     * @return \Extranet\DiversBundle\Entity\Pied 
+     */
+    public function getPied()
+    {
+        return $this->pied;
     }
 }
