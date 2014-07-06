@@ -1,0 +1,35 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+{% block body %}
+
+<div id="voir">
+
+    <div class="page_title"></div>
+
+    <p>
+        Qualification : <strong> {{ entity.qualification }} </strong>
+    </p>
+
+
+        {% if  entity.active != false %}
+            <p class="safe pad5">
+                Cette qualification est active et pourra être sélectionner lors de la creation d'une M.A.D.
+            </p>
+        {% endif %}
+        {% if entity.active == false %}
+            <p class="danger pad5">
+                Cette qualification est inactive et ne pourra être sélectionner.
+            </p>
+        {% endif %}
+
+</div>
+
+<div class="section_retour">
+    <a href="{{ path('qualification') }}">Retour &agrave; la gestion des qualifications</a>
+    
+    <a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
+</div>
+<div class="clear"></div>
+    
+
+{% endblock %}

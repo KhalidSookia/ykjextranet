@@ -1,0 +1,7 @@
+parameters:
+#    extranet_docs.example.class: Extranet\DocsBundle\Example
+
+services:
+#    extranet_docs.example:
+#        class: %extranet_docs.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

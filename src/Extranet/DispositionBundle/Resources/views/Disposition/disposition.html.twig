@@ -31,15 +31,13 @@
 </div>
 
 <h1>mise à disposition</h1>
-
 <div id="content">
 	<span class="title">Remplaçant</span> :  <span class="civilite"> m.</span> <span class="nom">{{ entity.personnel.nom }}</span> <span class="prenom">{{ entity.personnel.prenom }}</span>
 
 	<br>
 	<br>
-
 	<p>
-		Née le {{ entity.personnel.dob|date('j - M - Y') }} à{{ entity.personnel.pob }} N° Sécurité Sociale {{ entity.personnel.ss }} et demeurant au {{ entity.personnel.adresse }}
+		Née le {{ entity.personnel.dob|date('j - M - Y') }} à {{ entity.personnel.pob }} N° Sécurité Sociale {{ entity.personnel.ss }} et demeurant au {{ entity.personnel.adresse }}
 		<br>
 		Nationalité: <span class="nationalite">{{ entity.personnel.nationalite }}</span>
 	</p>

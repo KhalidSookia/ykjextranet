@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Wkdate list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datedebut</th>
+                <th>Heuredebut</th>
+                <th>Dureequotidienne</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('wkdate_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.heuredebut }}</td>
+                <td>{{ entity.dureequotidienne }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('wkdate_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('wkdate_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('wkdate_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

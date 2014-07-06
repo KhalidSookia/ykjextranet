@@ -1,0 +1,3 @@
+extranet_app_homepage:
+    pattern:  /
+    defaults: { _controller: ExtranetAppBundle:App:index }

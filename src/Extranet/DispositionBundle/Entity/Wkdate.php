@@ -42,6 +42,11 @@ class Wkdate
      */
     private $dureequotidienne;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Extranet\DispositionBundle\Entity\Disposition", inversedBy="wkdate")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $disposition;
 
     /**
      * Get id
@@ -120,5 +125,28 @@ class Wkdate
     public function getDureequotidienne()
     {
         return $this->dureequotidienne;
+    }
+
+    /**
+     * Set disposition
+     *
+     * @param \Extranet\DispositionBundle\Entity\Disposition $disposition
+     * @return Wkdate
+     */
+    public function setDisposition(\Extranet\DispositionBundle\Entity\Disposition $disposition = null)
+    {
+        $this->disposition = $disposition;
+    
+        return $this;
+    }
+
+    /**
+     * Get disposition
+     *
+     * @return \Extranet\DispositionBundle\Entity\Disposition 
+     */
+    public function getDisposition()
+    {
+        return $this->disposition;
     }
 }

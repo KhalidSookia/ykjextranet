@@ -3,6 +3,7 @@
 namespace Extranet\DispositionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Disposition
@@ -49,12 +50,6 @@ class Disposition
     private $active;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Extranet\WkdateBundle\Entity\Wkdate")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $wkdate;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Extranet\PersonnelBundle\Entity\Personnel")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -77,6 +72,11 @@ class Disposition
      * @ORM\JoinColumn(nullable=true)
      */
     private $taux;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Extranet\DispositionBundle\Entity\Wkdate", mappedBy="disposition")
+     */
+    private $wkdates;
 
     private $lastsDispositions;
 
@@ -237,29 +237,6 @@ class Disposition
     }
 
     /**
-     * Set taux
-     *
-     * @param \Extranet\DiversBundle\Entity\Taux $taux
-     * @return Disposition
-     */
-    public function setTaux(\Extranet\DiversBundle\Entity\Taux $taux = null)
-    {
-        $this->taux = $taux;
-
-        return $this;
-    }
-
-    /**
-     * Get taux
-     *
-     * @return \Extranet\DiversBundle\Entity\Taux 
-     */
-    public function getTaux()
-    {
-        return $this->taux;
-    }
-
-    /**
      * Set conditions
      *
      * @param \Extranet\DiversBundle\Entity\Conditions $conditions
@@ -303,5 +280,37 @@ class Disposition
     public function getPied()
     {
         return $this->pied;
+    }
+
+    /**
+     * Set taux
+     *
+     * @param \Extranet\DiversBundle\Entity\Taux $taux
+     * @return Disposition
+     */
+    public function setTaux(\Extranet\DiversBundle\Entity\Taux $taux = null)
+    {
+        $this->taux = $taux;
+
+        return $this;
+    }
+
+    /**
+     * Get taux
+     *
+     * @return \Extranet\DiversBundle\Entity\Taux 
+     */
+    public function getTaux()
+    {
+        return $this->taux;
+    }
+
+    public function old_setWkdate(ArrayCollection $wkdate)
+    {
+        $this->wkdate = $wkdate;
+        foreach($wkdate as $wkdate)
+        {
+            $wkdate->setDisposition($this);
+        }
     }
 }

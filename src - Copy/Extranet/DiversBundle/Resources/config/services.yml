@@ -1,0 +1,7 @@
+parameters:
+#    extranet_divers.example.class: Extranet\DiversBundle\Example
+
+services:
+#    extranet_divers.example:
+#        class: %extranet_divers.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

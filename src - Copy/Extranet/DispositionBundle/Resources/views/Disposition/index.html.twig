@@ -1,0 +1,52 @@
+{% extends 'ExtranetAppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Disposition list</h1>
+        
+
+        <ul>
+            <li>
+                <a href="{{ path('disposition_new') }}">
+                    Créer une nouvelle mise à disposition
+                </a>
+            </li>
+        </ul>
+
+        <div class="clear"></div>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="2" class="large">Datedebut</th>
+                <th class="large">Duree / J</th>
+                <th class="large">Datefin</th>
+                <th class="small">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('disposition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                {# <td colspan="2" class="large">{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d') }} à {{ entity.heuredebut|date('H:i') }}{% endif %}</td> #}
+                {# <td class="large">{{ entity.dureequotidienne|date('H:i') }}</td> #}
+                <td class="small">
+                <ul>
+                    <li>
+                        <a href="{{ path('disposition_show', { 'id': entity.id }) }}">Voir</a>
+                    </li>
+                    <li>
+                        {# <a href="{{ path('disposition_edit', { 'id': entity.id }) }}">Modifier</a> #}
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+       
+
+        <div class="section_retour">
+            <a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
+        </div>
+    {% endblock %}

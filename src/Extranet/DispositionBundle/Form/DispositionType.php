@@ -24,7 +24,7 @@ class DispositionType extends AbstractType
             ->add('personnel', 'entity', array('class' => 'ExtranetPersonnelBundle:Personnel', 'property' => 'nom', 'property' => 'prenom', 'label' => 'Personnel'))
             ->add('qualification', 'entity', array('class' => 'ExtranetPersonnelBundle:Qualification', 'property' => 'qualification', 'label' => 'Qualification'))
             ->add('utilisateur', 'entity', array('class' => 'ExtranetUtilisateurBundle:Utilisateur', 'property' => 'entite', 'label' => 'Client'))
-            ->add('wkdate', new WkdateType(), array('label' => false, 'required' => false))
+            ->add('wkdate', 'collection', array('type' => new WkdateType(), 'allow_add' => true, 'label' => false, 'required' => false, 'by_reference' => false))
             ->add('taux', new TauxType(), array('label' => false, 'required' => false))
 
         ;

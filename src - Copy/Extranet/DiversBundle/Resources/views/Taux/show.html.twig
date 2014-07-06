@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Taux</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Normale</th>
+                <td>{{ entity.normale }}</td>
+            </tr>
+            <tr>
+                <th>Repas</th>
+                <td>{{ entity.repas }}</td>
+            </tr>
+            <tr>
+                <th>Transport</th>
+                <td>{{ entity.transport }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('taux') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('taux_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

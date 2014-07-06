@@ -12,7 +12,7 @@ disposition_create:
 
 disposition_show:
     pattern:  /disposition/{id}
-    defaults: { _controller: ExtranetDispositionBundle:Disposition:generateDisposition }
+    defaults: { _controller: ExtranetDispositionBundle:PdfMail:generateDisposition }
 
 disposition_delete:
     pattern:  /disposition/delete/{id}
@@ -28,15 +28,19 @@ disposition_edit:
 
 generate_disposition:
     pattern:  /generate/disposition/{id}
-    defaults: { _controller: ExtranetDispositionBundle:Disposition:generateDisposition }
+    defaults: { _controller: ExtranetDispositionBundle:PdfMail:generateDisposition }
 
 mail_disposition:
     pattern:  /mail/disposition/{id}
-    defaults: { _controller: ExtranetDispositionBundle:Disposition:mailDisposition }
+    defaults: { _controller: ExtranetDispositionBundle:PdfMail:mailDisposition }
 
 download_disposition:
     pattern:  /download/disposition/{id}
-    defaults: { _controller: ExtranetDispositionBundle:Disposition:downloadDisposition }
+    defaults: { _controller: ExtranetDispositionBundle:PdfMail:downloadDisposition }
+
+add_disposition:
+    pattern:  /add/disposition
+    defaults: { _controller: ExtranetDispositionBundle:PdfMail:addDisposition }
 
 wkdate:
     pattern:  /wkdate

@@ -1,0 +1,27 @@
+utilisateur:
+    pattern:  /utilisateur
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:index }
+
+utilisateur_new:
+    pattern:  /utilisateur/new
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:new }
+
+utilisateur_create:
+    pattern:  /utilisateur/create
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:create }
+
+utilisateur_show:
+    pattern:  /utilisateur/{id}
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:show }
+
+utilisateur_delete:
+    pattern:  /utilisateur/delete/{id}
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:delete }
+
+utilisateur_update:
+    pattern:  /utilisateur/update/{id}
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:update }
+
+utilisateur_edit:
+    pattern:  /utilisateur/{id}/edit
+    defaults: { _controller: ExtranetUtilisateurBundle:Utilisateur:edit }

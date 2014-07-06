@@ -1,0 +1,7 @@
+parameters:
+#    extranet_utilisateur.example.class: Extranet\UtilisateurBundle\Example
+
+services:
+#    extranet_utilisateur.example:
+#        class: %extranet_utilisateur.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

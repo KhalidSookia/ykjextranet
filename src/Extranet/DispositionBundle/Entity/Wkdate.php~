@@ -42,6 +42,11 @@ class Wkdate
      */
     private $dureequotidienne;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Extranet\DispositionBundle\Entity\Disposition", inversedBy="wkdates")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $disposition;
 
     /**
      * Get id
@@ -51,5 +56,97 @@ class Wkdate
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set datedebut
+     *
+     * @param \DateTime $datedebut
+     * @return Wkdate
+     */
+    public function setDatedebut($datedebut)
+    {
+        $this->datedebut = $datedebut;
+    
+        return $this;
+    }
+
+    /**
+     * Get datedebut
+     *
+     * @return \DateTime 
+     */
+    public function getDatedebut()
+    {
+        return $this->datedebut;
+    }
+
+    /**
+     * Set heuredebut
+     *
+     * @param \DateTime $heuredebut
+     * @return Wkdate
+     */
+    public function setHeuredebut($heuredebut)
+    {
+        $this->heuredebut = $heuredebut;
+    
+        return $this;
+    }
+
+    /**
+     * Get heuredebut
+     *
+     * @return \DateTime 
+     */
+    public function getHeuredebut()
+    {
+        return $this->heuredebut;
+    }
+
+    /**
+     * Set dureequotidienne
+     *
+     * @param \DateTime $dureequotidienne
+     * @return Wkdate
+     */
+    public function setDureequotidienne($dureequotidienne)
+    {
+        $this->dureequotidienne = $dureequotidienne;
+    
+        return $this;
+    }
+
+    /**
+     * Get dureequotidienne
+     *
+     * @return \DateTime 
+     */
+    public function getDureequotidienne()
+    {
+        return $this->dureequotidienne;
+    }
+
+    /**
+     * Set disposition
+     *
+     * @param \Extranet\DispositionBundle\Entity\Disposition $disposition
+     * @return Wkdate
+     */
+    public function setDisposition(\Extranet\DispositionBundle\Entity\Disposition $disposition = null)
+    {
+        $this->disposition = $disposition;
+    
+        return $this;
+    }
+
+    /**
+     * Get disposition
+     *
+     * @return \Extranet\DispositionBundle\Entity\Disposition 
+     */
+    public function getDisposition()
+    {
+        return $this->disposition;
     }
 }

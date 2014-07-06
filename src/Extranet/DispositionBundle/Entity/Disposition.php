@@ -3,6 +3,7 @@
 namespace Extranet\DispositionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Disposition
@@ -17,6 +18,8 @@ class Disposition
         $this->created_at = new \Datetime();
         $this->updated_at = new \Datetime();
         $this->active = true;
+
+        $this->wkdate = new ArrayCollection();
     }
     /**
      * @var integer
@@ -49,12 +52,6 @@ class Disposition
     private $active;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Extranet\DispositionBundle\Entity\Wkdate", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $wkdate;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Extranet\PersonnelBundle\Entity\Personnel")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -77,6 +74,11 @@ class Disposition
      * @ORM\JoinColumn(nullable=true)
      */
     private $taux;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Extranet\DispositionBundle\Entity\Wkdate", mappedBy="disposition", cascade={"persist"})
+     */
+    private $wkdate;
 
     private $lastsDispositions;
 
@@ -305,23 +307,43 @@ class Disposition
         return $this->taux;
     }
 
-    /**
-     * Set wkdate
-     *
-     * @param \Extranet\WkdateBundle\Entity\Wkdate $wkdate
-     * @return Disposition
-     */
-    public function setWkdate(\Extranet\DispositionBundle\Entity\Wkdate $wkdate)
+    public function old_setWkdate(ArrayCollection $wkdate)
     {
         $this->wkdate = $wkdate;
+        foreach($wkdate as $wkdate)
+        {
+            $wkdate->setDisposition($this);
+        }
+    }
+
+    /**
+     * Add wkdate
+     *
+     * @param \Extranet\DispositionBundle\Entity\Wkdate $wkdate
+     * @return Disposition
+     */
+    public function addWkdate(\Extranet\DispositionBundle\Entity\Wkdate $wkdate)
+    {
+        $this->wkdate[] = $wkdate;
+        $wkdate->setDisposition($this);
     
         return $this;
     }
 
     /**
+     * Remove wkdate
+     *
+     * @param \Extranet\DispositionBundle\Entity\Wkdate $wkdate
+     */
+    public function removeWkdate(\Extranet\DispositionBundle\Entity\Wkdate $wkdate)
+    {
+        $this->wkdate->removeElement($wkdate);
+    }
+
+    /**
      * Get wkdate
      *
-     * @return \Extranet\DispositionBundle\Entity\Wkdate
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getWkdate()
     {
