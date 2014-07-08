@@ -23,12 +23,15 @@
 	.nationalite{text-transform:capitalize;}
 	.safe{background: #97FF8C;color:#9057af;}
 	.a_bloc{display: block;padding:5px 10px;margin: 20px 0 30px 0 ;text-align: center; text-decoration:none;}
+	table{margin-top:20px;}
+	td{padding:5px 30px;}
 </style>
 <body>
 
 <div id="entete"> 
 	{{ entete.entete|raw }}
 </div>
+
 
 <h1>mise à disposition</h1>
 <div id="content">
@@ -58,14 +61,35 @@
 	<br>
 
 	<span class="title">duree de la mission</span>
-	<div>
+	{# <div>
 		<span class="sub-title">DU</span>
-		{# <span class="duree">{{ entity.datedebut|date('j - M - Y') }}</span> #}
+		<span class="duree">{{ entity.datedebut|date('j - M - Y') }}</span>
 	</div>
 	<div>
 		<span class="sub-title">Durée hebdomadaire</span>
-		{# <span class="duree">{{ entity.heuredebut|date('H:m') }} à {{ entity.dureequotidienne|date('H:m') }}</span> #}
-	</div>
+		<span class="duree">{{ entity.heuredebut|date('H:m') }} à {{ entity.dureequotidienne|date('H:m') }}</span>
+	</div> #}
+
+	<table>
+		<tr>
+			<td>Date</td>
+			<td>Début</td>
+			<td>Durée</td>
+		</tr>
+		{% for wkdate  in entity.wkdate %}
+		    <tr>
+		    	<td>
+		    		{{ wkdate.datedebut|date('j  M  Y') }}
+		    	</td>
+		    	<td>
+		    		{{ wkdate.heuredebut|date('H:i')}}
+		    	</td>
+		    	<td>
+		    		{{ wkdate.dureequotidienne|date('H:i') }}
+		    	</td>
+		    </tr>
+		{% endfor %}
+	</table>
 
 	<br>
 

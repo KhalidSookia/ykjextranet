@@ -1,7 +1,0 @@
-parameters:
-#    extranet_app.example.class: Extranet\AppBundle\Example
-
-services:
-#    extranet_app.example:
-#        class: %extranet_app.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

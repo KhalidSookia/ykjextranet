@@ -1,3 +1,0 @@
-extranet_user_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ExtranetUserBundle:Default:index }

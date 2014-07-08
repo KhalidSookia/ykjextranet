@@ -1,7 +1,0 @@
-parameters:
-#    extranet_disposition.example.class: Extranet\DispositionBundle\Example
-
-services:
-#    extranet_disposition.example:
-#        class: %extranet_disposition.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

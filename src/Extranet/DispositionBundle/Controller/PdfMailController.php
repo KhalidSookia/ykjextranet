@@ -58,7 +58,7 @@ class PdfMailController extends DispositionController
 
     public function getPdfPath($id)
     {
-        $pdfFile = $this->getRequest()->getUriForPath('/../docs/pdf/miseadisposition/' . $id . '.pdf');
+        $pdfFile = $this->getRequest()->getUriForPath('/web/docs/pdf/miseadisposition/' . $id . '.pdf');
 
         return $pdfFile;
     }
@@ -77,9 +77,6 @@ class PdfMailController extends DispositionController
         $conditions = $this->getConditions();
         $entete = $this->getEntete();
         $pied = $this->getPied();
-        $wkdate = $entity->getWkdate();
-
-var_dump($wkdate);die();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Disposition entity.');
@@ -93,7 +90,6 @@ var_dump($wkdate);die();
             'conditions' => $conditions,
             'pied' => $pied,
             'entete' => $entete,
-            'wkdate' => $wkdate,
             'section_retour' => $section_retour,
             'email' => "<a href='$urlDisposition' class='safe a_bloc'>Envoyer par mail</a>",
             'download' => $download_link
@@ -159,7 +155,7 @@ var_dump($wkdate);die();
         ->setBody($disposition, 'text/html')
         ->attach(\Swift_Attachment::fromPath("docs/pdf/miseadisposition/$id.pdf"))
         ;
-        //$mailer->send($message);
+        $mailer->send($message);
 
         $this->get('session')->getFlashBag()->add('info', 'Votre mise à disposition à bien été envoyé.');
 
@@ -177,9 +173,8 @@ var_dump($wkdate);die();
         $response = new Response();
         $response->setContent(file_get_contents($pdfPath));
         $response->headers->set('Content-Type', 'application/PDF');
-
-        $this->removePdf($id);
               
+        $this->removePdf($id);
         return $response;
 
     }
