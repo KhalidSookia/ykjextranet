@@ -1,7 +1,7 @@
 {% extends 'ExtranetAppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Disposition list</h1>
+    <h1>Liste des mises à disposition</h1>
         
 
         <ul>
@@ -13,38 +13,40 @@
         </ul>
 
         <div class="clear"></div>
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th></th>
-                <th colspan="2" class="large">Datedebut</th>
-                <th class="large">Duree / J</th>
-                <th class="large">Datefin</th>
-                <th class="small">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('disposition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                {# <td colspan="2" class="large">{% if entity.datedebut %}{{ entity.datedebut|date('Y-m-d') }} à {{ entity.heuredebut|date('H:i') }}{% endif %}</td> #}
-                {# <td class="large">{{ entity.dureequotidienne|date('H:i') }}</td> #}
-                <td class="small">
-                <ul>
-                    <li>
-                        <a href="{{ path('disposition_show', { 'id': entity.id }) }}">Voir</a>
-                    </li>
-                    <li>
-                        {# <a href="{{ path('disposition_edit', { 'id': entity.id }) }}">Modifier</a> #}
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <section id="disposition_index">
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th class="large">Personnel</th>
+                    <th class="large">Utilisateur</th>
+                    <th class="large">Créer le</th>
+                    <th class="small">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+    {#                 <td><a href="{{ path('disposition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+     #}                
+                    <td class="large"><a href="#" title="">{{ entity.personnel.prenom }} {{ entity.personnel.nom }}</a></td>
+                    <td class="large">{{ entity.utilisateur.entite }}<br>({{ entity.utilisateur.contact }}) </td>
+                    <td class="large">{{ entity.createdAt|date('j-m-Y H:i') }}</td>
+                    <td class="small">
+                        <ul>
+                            <li>
+                                <a href="{{ path('disposition_show', { 'id': entity.id }) }}">Voir</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('disposition_edit', { 'id': entity.id }) }}">Modifier</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-       
+    </section>
 
         <div class="section_retour">
             <a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
