@@ -4,7 +4,9 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{02CDD78D-95E4-4985-A597-5DB8C27E41BB}" Name="ykj_extranet" Selected="Yes" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="../../photo/__conception/ykj_extranet/ykj_extranet.prj"/>
+		<Model Expanded="Yes" ID="{EAB977A0-8BD6-4598-B282-41DBD6348A1C}" Name="tickets" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="../../tickets/_conception/tickets/tickets.prj"/>
+		<Model ID="{666AAC70-D8FA-4D82-ACBF-19699A7BE7C6}" Name="admin_primary" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../tickets/_conception/tickets/admin_primary.moo"/>
+		<Model ID="{AB7235E9-E7A5-4BDD-9702-7E5FE6F15E17}" Name="admin_secondary" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../tickets/_conception/tickets/admin_secondary.moo"/>
 	</Local>
 	<BrowserModule Name="Référentiel"/>
 </Workspace>

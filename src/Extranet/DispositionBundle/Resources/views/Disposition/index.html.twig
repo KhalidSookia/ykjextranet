@@ -28,9 +28,12 @@
                 <tr>
     {#                 <td><a href="{{ path('disposition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
      #}                
-                    <td class="large"><a href="#" title="">{{ entity.personnel.prenom }} {{ entity.personnel.nom }}</a></td>
-                    <td class="large">{{ entity.utilisateur.entite }}<br>({{ entity.utilisateur.contact }}) </td>
+                    <td class="large"><a href="{{ path('personnel_show', { 'id': entity.personnel.id }) }}" title="">{{ entity.personnel.prenom }} {{ entity.personnel.nom }}</a></td>
+
+                    <td class="large"><a href="{{ path('utilisateur_show', { 'id': entity.utilisateur.id }) }}">{{ entity.utilisateur.entite }}<br>({{ entity.utilisateur.contact }}) </a></td>
+
                     <td class="large">{{ entity.createdAt|date('j-m-Y H:i') }}</td>
+
                     <td class="small">
                         <ul>
                             <li>
@@ -41,6 +44,7 @@
                             </li>
                         </ul>
                     </td>
+                    
                 </tr>
             {% endfor %}
             </tbody>

@@ -23,10 +23,10 @@
              </span>
     </p>
 
-    <p>
+   {#  <p>
         <span class="attribute">Qualification:</span>
         <span class="qualification">Night</span><span class="qualification">Receptionniste</span><span class="qualification">Caf&eacute;teria</span><span class="qualification">Femme de chambre</span>
-    </p>
+    </p> #}
 
     <p>
         <span class="attribute">Email:</span>{{ entity.email }}
@@ -53,10 +53,10 @@
     <p>
         <span class="attribute">Nationalit&eacute;:</span>{{ entity.nationalite }}
     </p>
-
+{# 
     <p>
         <span class="attribute">Qualification:</span>Night, R&eacute;ceptionniste, caf&eacute;teria.
-    </p>
+    </p> #}
 
         {% if  entity.active != false %}
             <p class="safe pad5">

@@ -3,11 +3,32 @@
 {% block body -%}
     <h1>Modification d'une mise à disposition</h1>
 
+    {{ form_start(edit_form) }}
+    {{ form_row(edit_form.personnel) }}
+    {{ form_row(edit_form.qualification) }}
+    {{ form_row(edit_form.wkdate) }} 
+    <a href="#" class="add_date clear" style="padding:5px;line-height:28px;">Ajouter une date de mission</a>
+    <div class="clear"></div>
+    {# <a href="#" class="remove_date clear" style="padding:5px;line-height:28px;">Enlever la dernière date de mission</a> #}
+    <div class="clear"></div>
+    {{ form_row(edit_form.utilisateur) }}
+    
     {{ form(edit_form) }}
-
 		<div class="section_retour">
 			<a href="{{ path('disposition') }}" title="Retour à la gestion des mises a disposition">Retour &agrave; la gestion des mises à disposition</a>
 			
 			<a href="{{ path('extranet_app_homepage') }}" title="Retour au tableau de bord">Retour au tableau de bord</a>
 		</div>
+
+
+	<script>
+	    $('a.add_date').live('click', function(event){
+	        event.preventDefault();
+	        
+	        var collectionHolder = $('#extranet_dispositionbundle_disposition_wkdate');
+	        var prototype = collectionHolder.attr('data-prototype');
+	        form = prototype.replace(/__name__/g, collectionHolder.children().length);
+	        collectionHolder.append(form);
+	    });
+	</script>
 {% endblock %}

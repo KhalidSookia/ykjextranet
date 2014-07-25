@@ -1,7 +1,7 @@
 // Powered By HTTP://KNS-3W.COM
 
 @import "compass/reset";
-@import "compass";
+// @import "compass";
 
 $body_bg:#0083FF;
 $header_bg:transparent;
@@ -154,4 +154,16 @@ td{text-align: center;padding: 0 5px;
 	line-height: 100px;
 	vertical-align: middle;  
 	text-align: center;
+}
+
+#disposition_index table tbody tr td {
+	a{
+		background:white;
+		display: inline-block;
+		width:100%;
+		text-align: center;
+		padding-right:0;
+		margin:0;
+		padding-bottom: 5px;
+	}
 }

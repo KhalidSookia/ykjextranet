@@ -61,15 +61,7 @@
 	<br>
 
 	<span class="title">duree de la mission</span>
-	{# <div>
-		<span class="sub-title">DU</span>
-		<span class="duree">{{ entity.datedebut|date('j - M - Y') }}</span>
-	</div>
-	<div>
-		<span class="sub-title">Durée hebdomadaire</span>
-		<span class="duree">{{ entity.heuredebut|date('H:m') }} à {{ entity.dureequotidienne|date('H:m') }}</span>
-	</div> #}
-
+	
 	<table>
 		<tr>
 			<td>Date</td>
@@ -77,6 +69,7 @@
 			<td>Durée</td>
 		</tr>
 		{% for wkdate  in entity.wkdate %}
+			{% if (wkdate.heuredebut|date('H:i') != '00:00') or (wkdate.dureequotidienne|date('H:i') != '00:00') %}
 		    <tr>
 		    	<td>
 		    		{{ wkdate.datedebut|date('j  M  Y') }}
@@ -88,6 +81,7 @@
 		    		{{ wkdate.dureequotidienne|date('H:i') }}
 		    	</td>
 		    </tr>
+		    {% endif %}
 		{% endfor %}
 	</table>
 

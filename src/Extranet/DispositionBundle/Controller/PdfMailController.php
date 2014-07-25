@@ -58,7 +58,7 @@ class PdfMailController extends DispositionController
 
     public function getPdfPath($id)
     {
-        $pdfFile = $this->getRequest()->getUriForPath('/web/docs/pdf/miseadisposition/' . $id . '.pdf');
+        $pdfFile = $this->getRequest()->getUriForPath('/../docs/pdf/miseadisposition/' . $id . '.pdf');
 
         return $pdfFile;
     }
