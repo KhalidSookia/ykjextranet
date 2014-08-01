@@ -211,7 +211,7 @@ class DispositionController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-
+            //return $this->redirect($this->generateUrl('disposition_edit', array('id' => $id)));
             return $this->redirect($this->generateUrl('generate_disposition', array('id' => $entity->getId())));
         }
 

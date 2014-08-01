@@ -191,7 +191,6 @@ class WkdateController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-
             $em->flush();
 
             return $this->redirect($this->generateUrl('wkdate_edit', array('id' => $id)));
